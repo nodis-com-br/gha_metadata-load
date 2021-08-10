@@ -10,9 +10,9 @@ artifactClient.downloadArtifact('metadata').then(result => {
     const destinyStream = fs.createWriteStream(process.env.GITHUB_ENV, {flags:'a'});
 
     for (const k in sourceJson) if (sourceJson.hasOwnProperty(k)) {
-        const env = 'NODIS_' + k;
-        core.info(env);
-        destinyStream.write(env + '=' + sourceJson[k] + '\n');
+        const envDefinition = 'NODIS_' + k + '=' + sourceJson[k];
+        core.info(envDefinition);
+        destinyStream.write(envDefinition  + '\n');
     }
 
 }).catch(err => core.setFailed(err));
